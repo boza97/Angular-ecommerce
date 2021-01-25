@@ -1,0 +1,55 @@
+<div class="w-50 mx-auto pt-5 mb-5">
+  <form #checkoutForm="ngForm" (ngSubmit)="onSubmit(checkoutForm)">
+    <h2 class="text-center mb-4">Naručivanje</h2>
+
+    <div class="form-group row">
+      <label for="contactName" class="col-md-4 col-form-label text-md-right">Ime i Prezime:</label>
+      <div class="col-md-8">
+        <input type="text" id="contactName" class="form-control" ngModel name="contactName" #contactName="ngModel"
+        [ngClass]="contactName.touched && contactName.invalid ? 'is-invalid' : ''" required/>
+        <span class="invalid-feedback" role="alert">
+          <strong>Ime i prezime je obavezno.</strong>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="city" class="col-md-4 col-form-label text-md-right">Grad:</label>
+      <div class="col-md-8">
+        <input type="text" id="city" class="form-control" ngModel name="city" #city="ngModel"
+        [ngClass]="city.touched && city.invalid ? 'is-invalid' : ''" required/>
+        <span class="invalid-feedback" role="alert">
+          <strong>Naziv grada je obavezan.</strong>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="city" class="col-md-4 col-form-label text-md-right">Adresa:</label>
+      <div class="col-md-8">
+        <input type="text" id="address" class="form-control" ngModel name="address" #address="ngModel"
+        [ngClass]="address.touched && address.invalid ? 'is-invalid' : ''" required/>
+        <span class="invalid-feedback" role="alert">
+          <strong>Adresa je obavezna.</strong>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="city" class="col-md-4 col-form-label text-md-right">Telefon:</label>
+      <div class="col-md-8">
+        <input type="text" id="phone" class="form-control" ngModel name="phone" #phone="ngModel"
+        [ngClass]="phone.touched && phone.invalid ? 'is-invalid' : ''" required/>
+        <span class="invalid-feedback" role="alert">
+          <strong></strong>
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-right">
+        <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.invalid">Naruči</button>
+      </div>
+    </div>
+  </form>
+</div>

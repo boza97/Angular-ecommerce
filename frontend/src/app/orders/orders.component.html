@@ -1,0 +1,12 @@
+<div class="text-center pt-4">
+  <h2>Narudžbine</h2>
+</div>
+<hr>
+<div class="row mx-2 mt-4">
+  <div class="col-md-5">
+    <app-order-list (selectedOrder)="onSelectedOrder($event)"></app-order-list>
+  </div>
+  <div class="col-md-7 pl-5">
+    <app-order-detail [orderId]="selectedOrderId"></app-order-detail>
+  </div>
+</div>

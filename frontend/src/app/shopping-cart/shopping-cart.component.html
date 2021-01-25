@@ -1,0 +1,46 @@
+<div class="px-4 py-4">
+  <h4 class="text-center">Vaša Korpa</h4>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Proizvod</th>
+          <th scope="col">Cena</th>
+          <th scope="col">Količina</th>
+          <th scope="col">Ukupno</th>
+          <th scope="col">Obriši</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr *ngFor="let item of cart">
+          <td>{{ item.product.name }}</td>
+          <td>RSD {{ item.product.unitPrice.toFixed(2) }}</td>
+          <td>
+            <input class="form-control form-control-sm" id="quantitiy" type="number" min='1'
+              [max]="item.product.unitsInStock" [value]="item.quantity" (change)="onQuantityChange(item, $event)">
+          </td>
+          <td>RSD {{ item.amount.toFixed(2) }}</td>
+          <td><button type="button" class="btn btn-link p-0 text-danger" (click)="onRemoveFromCart(item)">X</button>
+          </td>
+        </tr>
+        <tr *ngIf="!cart || cart.length < 1">
+          <td class="text-center" colspan="5">Vaša korpa je trenutno prazna.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template [ngIf]="cart.length > 0">
+    <div class="row">
+      <div class="form-group text-left col-12 col-sm-6">
+        <strong>Ukupno: </strong><span class="price-color">RSD {{ total.toFixed(2) }}</span>
+      </div>
+
+      <div id="btn-checkout" class="form-group text-right col-12 col-sm-6">
+        <button class="btn btn-primary" type="button" (click)="onCheckout()">Nastavi</button>
+      </div>
+    </div>
+
+  </ng-template>
+</div>

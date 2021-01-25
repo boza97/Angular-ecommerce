@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-6 col-sm-12 border-right text-center">
+    <img *ngIf="product?.imagePath" class="img-fluid" [src]="'../../assets/images/products/' + product?.imagePath"
+      [alt]="product.name" style="width: 500px;">
+    <img *ngIf="!product?.imagePath" class=" img-fluid" src="../../assets/images/products/no-image.png" alt="no-image"
+      style="width: 500px;">
+  </div>
+
+  <div class="col-md-6 col-sm-12 mt-4 mt-md-0">
+    <div class="row no-gutters">
+      <div class="col-12">
+        <h3 class="text-center">{{ product?.name }}</h3>
+      </div>
+
+      <div class="col-12 mx-5 mx-md-0">
+        <h5 class="mt-4">
+          <span class="font-weight-bold">Kategorija: </span>
+          {{ product?.category.name }}
+        </h5>
+
+        <h5 class="mb-0 font-weight-bold">
+          Karakteristike:
+        </h5>
+
+        <p class="text-wrap" [innerHTML]="product?.description"></p>
+
+        <div>
+          <button class="btn btn-warning" (onClick)="onAddToCart(product)">
+            Dodaj u korpu
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

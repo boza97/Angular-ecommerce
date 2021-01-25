@@ -1,0 +1,14 @@
+<div class="list-group">
+  <div class="list-group-item" *ngFor="let order of orders">
+    <h5 class="text-center">Narudžbina br. {{ order.id }}</h5>
+    <div>
+      <p><strong>Kontakt ime: </strong>{{ order.contactName }}</p>
+      <p><strong>Grad: </strong>{{ order.city }}</p>
+    </div>
+    <div>
+      <p><strong>Datum naručivanja: </strong>{{ order.createdAt | date: 'short' }}</p>
+      <p class="m-0"><strong>Ukupno: </strong> RSD {{ order.total.toFixed(2) }}</p>
+    </div>
+    <button class="btn btn-primary float-right" (click)="onDetails(order.id)">Detalji</button>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="row form-group justify-content-center">
+  <div class="col-md-12 col-lg-3 col-form-label">
+    <label class="font-weight-bold float-lg-right" for="category">Kategorija proizvoda:</label>
+  </div>
+  <div class="col-md-12 col-lg-3">
+    <select class="form-control float-lg-left" name="category" (change)="onCategoryChange($event.target.value)">
+      <option value="*" selected>Sve</option>
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+  </div>
+</div>
+
+<div class="row px-4">
+  <div class="col-12 col-md-6 col-xl-4 mt-4" *ngFor="let product of products">
+    <div class="card">
+      <div class="text-center">
+        <img *ngIf="product.imagePath" class="card-img-top img-fluid my-3"
+          [src]="'../../assets/images/products/' + product.imagePath" [alt]="product.name" style="width: 300px;">
+        <img *ngIf="!product.imagePath" class="card-img-top img-fluid my-3"
+          src="../../assets/images/products/no-image.png" alt="no-image" style="width: 300px;">
+      </div>
+
+      <div class="card-body border-top">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">
+          <strong>Cena: </strong>
+          <span class="price-color">RSD {{ product.unitPrice.toFixed(2) }}</span>
+        </p>
+
+        <div class="row">
+          <a class="col-md-6 col-sm-12" [routerLink]="[product.id]" class="btn btn-primary">Detalji</a>
+
+          <button class="col-md-6 col-sm-12 mt-2 mt-md-0 ml-md-3 btn btn-warning" (click)="onAddToCart(product)">Dodaj u korpu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

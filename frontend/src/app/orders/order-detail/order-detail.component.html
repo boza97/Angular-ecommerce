@@ -1,0 +1,54 @@
+<ng-template [ngIf]="order">
+  <h3 class="text-center mt-3 mt-md-0">Narudžbina br. {{ order.id }}</h3>
+  <div class="row mt-4">
+    <div class="col-6">
+      <p><strong>Kontakt ime: </strong>{{ order.contactName }}</p>
+    </div>
+    <div class="col-6">
+      <p><strong>Grad: </strong>{{ order.city }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <p><strong>Adresa: </strong>{{ order.address }}</p>
+    </div>
+    <div class="col-6">
+      <p><strong>Telefon: </strong>{{ order.phone }}</p>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h4 class="text-center">Naručeni proizvodi</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-12 pt-3" *ngFor="let orderItem of order.order_items">
+      <div class="row">
+        <div class="col-4 border-right" style="padding-right: 0;">
+          <img *ngIf="orderItem.product.imagePath" class="img-fluid"
+            [src]="'../../assets/images/products/' + orderItem.product.imagePath" [alt]="orderItem.product.name"
+            style="width: 150px;">
+          <img *ngIf="!orderItem.product.imagePath" class="img-fluid" src="../../assets/images/products/no-image.png"
+            alt="no-image" style="width: 150px;">
+        </div>
+
+        <div class="col-8 d-flex align-items-center pl-5">
+          <p>
+            Naziv: {{ orderItem.product.name }} <br>
+            Cena: RSD {{ orderItem.product.unitPrice.toFixed(2) }} <br>
+            Količina: {{ orderItem.quantity }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <p><strong>Datum naručivanja: </strong>{{ order.createdAt | date: 'short' }}</p>
+  </div>
+
+  <div class="mt-3">
+    <p><strong>Ukupno: </strong><span class="price-color">RSD {{ order.total.toFixed(2) }}</span></p>
+  </div>
+</ng-template>

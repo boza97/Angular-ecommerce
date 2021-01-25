@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark color-primary">
+  <a class="navbar-brand" routerLink="/"><img src="assets/images/logo.png" height="40" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+    (click)="isMenuCollapsed = !isMenuCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home" (click)="isMenuCollapsed = true">Početna</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="products" (click)="isMenuCollapsed = true">Proizvodi</a>
+      </li>
+
+      <ng-template [ngIf]="user">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="cart" (click)="isMenuCollapsed = true">Korpa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="orders" (click)="isMenuCollapsed = true">Narudžbine</a>
+        </li>
+      </ng-template>
+    </ul>
+
+    <ul class="navbar-nav">
+      <ng-template [ngIf]="!user">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="login" (click)="isMenuCollapsed = true">Prijavi se</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="register" (click)="isMenuCollapsed = true">Registruj se</a>
+        </li>
+      </ng-template>
+
+      <ng-template [ngIf]="user">
+        <li class="nav-item">
+          <a class="nav-link text-white">Zdravo, <strong class="text-warning">{{ user.firstname }}</strong></a>
+        </li>
+        <li class="nav-item">
+          <a class="btn nav-link" (click)="onLogout()">Odjavi se</a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>

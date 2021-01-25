@@ -1,0 +1,45 @@
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div *ngIf="alert">
+        <ngb-alert [type]="alert.type" (close)="closeAlert()">
+          {{ alert.message }}
+        </ngb-alert>
+      </div>
+
+      <div *ngIf="isLoading" class="text-center">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+
+      <div class="card" *ngIf="!isLoading">
+        <div class="card-header text-center h4">Prijavljivanje</div>
+        <div class="card-body">
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="form-group row">
+              <label for="email" class="col-md-4 col-form-label text-md-right">E-mail:</label>
+              <div class="col-md-6">
+                <input id="email" type="email" class="form-control" ngModel name="email" required email>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="password" class="col-md-4 col-form-label text-md-right">Lozinka:</label>
+              <div class="col-md-6">
+                <input id="password" name="password" type="password" class="form-control" ngModel required
+                  minlength="6">
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <div class="col-md-8 offset-md-4">
+                <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+                  Prijavi se
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
